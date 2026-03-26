@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel工资数据处理工具</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Excel工资数据处理工具</h1>
+        
+        <form id="uploadForm" enctype="multipart/form-data">
+            <!-- 源表区域（动态添加） -->
+            <div class="source-section-header">
+                <h2 class="section-title">源数据表</h2>
+                <button type="button" class="add-table-btn" id="addTableBtn">+ 添加源表</button>
+            </div>
+            <div class="source-tables" id="sourceTables">
+                <!-- 默认显示表1 -->
+                <div class="file-section source-section" data-table-id="1">
+                    <div class="source-header">
+                        <span class="source-title">表 1</span>
+                        <button type="button" class="remove-table-btn" onclick="removeTable(1)" style="display: none;">×</button>
+                    </div>
+                    <div class="upload-area" id="uploadArea1">
+                        <input type="file" id="file1" name="file_1" accept=".xlsx,.xls" hidden>
+                        <div class="upload-content">
+                            <span class="upload-icon">&#128193;</span>
+                            <p class="upload-text">点击或拖拽上传</p>
+                            <p class="file-name" id="fileName1"></p>
+                        </div>
+                    </div>
+                    <div class="config-area">
+                        <div class="input-group">
+                            <label>身份证号列</label>
+                            <input type="text" id="idCol1" name="id_col_1" value="A" pattern="[A-Za-z]*" title="请输入列名字母，如A、B、C">
+                        </div>
+                        <div class="input-group">
+                            <label>姓名列（可选）</label>
+                            <input type="text" id="nameCol1" name="name_col_1" value="" pattern="[A-Za-z]*" title="请输入列名字母，如A、B、C">
+                        </div>
+                        <div class="input-group">
+                            <label>工资列</label>
+                            <input type="text" id="salaryCol1" name="salary_col_1" value="B" pattern="[A-Za-z]*" title="请输入列名字母，如A、B、C">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- B表区域 -->
+            <h2 class="section-title">目标表B（必须上传）</h2>
+            <div class="target-section">
+                <div class="file-section">
+                    <div class="upload-area" id="uploadAreaB">
+                        <input type="file" id="fileB" name="file_b" accept=".xlsx,.xls" hidden required>
+                        <div class="upload-content">
+                            <span class="upload-icon">&#128193;</span>
+                            <p class="upload-text">B表上传区（必填）</p>
+                            <p class="file-name" id="fileNameB"></p>
+                        </div>
+                    </div>
+                    <div class="config-area">
+                        <div class="input-group">
+                            <label for="idColB">身份证号列</label>
+                            <input type="text" id="idColB" name="id_col_b" value="A" required pattern="[A-Za-z]+" title="请输入列名字母，如A、B、C">
+                        </div>
+                        <div class="input-group">
+                            <label for="nameColB">姓名列（可选）</label>
+                            <input type="text" id="nameColB" name="name_col_b" value="" pattern="[A-Za-z]*" title="请输入列名字母，如A、B、C">
+                        </div>
+                        <div class="input-group">
+                            <label for="salaryColB">需要填入工资信息的列</label>
+                            <input type="text" id="salaryColB" name="salary_col_b" value="B" required pattern="[A-Za-z]+" title="请输入列名字母，如A、B、C">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 提交按钮 -->
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span class="btn-text">提交处理</span>
+                <span class="btn-loading" hidden>处理中...</span>
+            </button>
+        </form>
+
+        <!-- 结果区域 -->
+        <div id="resultArea" class="result-area" hidden>
+            <div class="success-message">
+                <span class="success-icon">&#10004;</span>
+                <p>处理完成！</p>
+            </div>
+            <a id="downloadLink" href="#" class="download-btn">下载处理结果</a>
+        </div>
+
+        <!-- 错误区域 -->
+        <div id="errorArea" class="error-area" hidden>
+            <div class="error-message">
+                <span class="error-icon">&#10008;</span>
+                <p id="errorText"></p>
+            </div>
+        </div>
+
+        <!-- 使用说明 -->
+        <div class="instructions">
+            <h3>使用说明</h3>
+            <ul>
+                <li>点击"添加源表"按钮添加更多源数据表（最多10个）</li>
+                <li>上传目标表B（必须）和至少一个源数据表</li>
+                <li>设置各表的身份证号列、姓名列（可选）和工资列（输入列名字母，如A、B、C、AA）</li>
+                <li>系统会按源表顺序，依次将工资数据加到B表</li>
+                <li>如果源表中有多个相同身份证号的记录，工资会先相加</li>
+                <li>源表中在B表找不到的身份证号，会在B表中新增一行，并填入姓名（如配置了姓名列）</li>
+                <li>只处理身份证号为18位的行（17位数字+1位数字或X）</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
