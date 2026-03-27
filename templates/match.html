@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>员工工资录入 - Excel 数据处理工具</title>
+    <title>人员信息表匹配 - Excel 数据处理工具</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -12,17 +12,17 @@
         <div class="nav-container">
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="/" class="nav-link active">员工工资录入</a>
+                    <a href="/" class="nav-link">员工工资录入</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/match" class="nav-link">人员信息表匹配</a>
+                    <a href="/match" class="nav-link active">人员信息表匹配</a>
                 </li>
             </ul>
         </div>
     </nav>
     
     <div class="container">
-        <form id="uploadForm" enctype="multipart/form-data">
+        <form id="matchForm" enctype="multipart/form-data">
             <div class="main-content">
                 <!-- 左侧：源数据表 -->
                 <div class="left-section">
@@ -35,14 +35,13 @@
                                 <th style="width: 380px;"></th>
                                 <th>姓名列名</th>
                                 <th>身份证列名</th>
-                                <th>工资列名</th>
+                                <th>其他列配置</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr id="sourceRow1">
+                            <tr>
                                 <td>
                                     <div class="file-upload-cell">
-                                        <span class="delete-btn" onclick="deleteSourceRow(1)">×</span>
                                         <button type="button" class="file-btn" onclick="selectFile(1)">选择文件</button>
                                         <input type="file" id="file1" name="file_1" class="file-input" accept=".xlsx,.xls" onchange="fileSelected(1)">
                                         <span class="file-name" id="fileName1"></span>
@@ -50,10 +49,8 @@
                                 </td>
                                 <td><input type="text" id="nameCol1" name="name_col_1" class="column-input" placeholder="请输入"></td>
                                 <td><input type="text" id="idCol1" name="id_col_1" class="column-input" placeholder="请输入"></td>
-                                <td><input type="text" id="salaryCol1" name="salary_col_1" class="column-input" placeholder="请输入"></td>
+                                <td><input type="text" id="otherCol1" name="other_col_1" class="column-input" placeholder="请输入"></td>
                             </tr>
-
-                           
                         </tbody>
                     </table>
                     <button type="button" class="add-row-btn" onclick="addSourceRow()">新增</button>
@@ -70,7 +67,7 @@
                                 <th style="width: 380px;"></th>
                                 <th>姓名列</th>
                                 <th>身份证列名</th>
-                                <th>工资列名</th>
+                                <th>其他列配置</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,7 +81,7 @@
                                 </td>
                                 <td><input type="text" id="nameColB" name="name_col_b" class="column-input" placeholder="请输入"></td>
                                 <td><input type="text" id="idColB" name="id_col_b" class="column-input" placeholder="请输入" required></td>
-                                <td><input type="text" id="salaryColB" name="salary_col_b" class="column-input" placeholder="请输入" required></td>
+                                <td><input type="text" id="otherColB" name="other_col_b" class="column-input" placeholder="请输入"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -112,20 +109,6 @@
                 <span class="error-icon">&#10008;</span>
                 <span id="errorText"></span>
             </div>
-        </div>
-
-        <!-- 使用说明 -->
-        <div class="instructions">
-            <h3>使用说明</h3>
-            <ul>
-                <li>点击"添加源表"按钮添加更多源数据表（最多10个）</li>
-                <li>上传目标表（必须）和至少一个源数据表</li>
-                <li>设置各表的身份证号列、姓名列（可选）和工资列（输入列名字母，如A、B、C、AA）</li>
-                <li>系统会按源表顺序，依次将工资数据加到目标表</li>
-                <li>如果源表中有多个相同身份证号的记录，工资会先相加</li>
-                <li>源表中在目标表找不到的身份证号，会在目标表中新增一行，并填入姓名（如配置了姓名列）</li>
-                <li>只处理身份证号为18位的行（17位数字+1位数字或X）</li>
-            </ul>
         </div>
     </div>
 

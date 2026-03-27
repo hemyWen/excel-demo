@@ -6,242 +6,258 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #f5f7fa;
     min-height: 100vh;
-    padding: 40px 20px;
-}
-
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 40px;
-    font-size: 28px;
-}
-
-.section-title {
-    color: #667eea;
-    font-size: 20px;
-    margin: 0;
-    padding-bottom: 10px;
-}
-
-.source-section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 30px 0 20px 0;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #e0e0e0;
-}
-
-.add-table-btn {
-    padding: 8px 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.add-table-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-}
-
-.add-table-btn:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
-.source-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.source-title {
-    font-weight: 600;
-    color: #333;
-    font-size: 16px;
-}
-
-.remove-table-btn {
-    width: 28px;
-    height: 28px;
-    background: #ff4d4f;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 18px;
-    line-height: 1;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.remove-table-btn:hover {
-    background: #ff7875;
-    transform: scale(1.1);
-}
-
-.source-tables {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.source-section {
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-}
-
-.source-section .upload-area {
-    padding: 25px 15px;
-    margin-bottom: 15px;
-}
-
-.target-section {
-    background: #fff3e0;
-    border-radius: 12px;
     padding: 20px;
-    border: 2px solid #ff9800;
-    margin-bottom: 30px;
 }
 
-.upload-section {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.file-section {
-    flex: 1;
-    min-width: 300px;
-    max-width: 400px;
-}
-
-.upload-area {
-    border: 3px dashed #ccc;
-    border-radius: 12px;
-    padding: 40px 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: #fafafa;
+/* 导航栏样式 */
+.navbar {
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
     margin-bottom: 20px;
 }
 
-.upload-area:hover {
-    border-color: #667eea;
-    background: #f0f0ff;
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    height: 50px;
 }
 
-.upload-area.has-file {
-    border-color: #52c41a;
-    background: #f6ffed;
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 40px;
 }
 
-.upload-icon {
-    font-size: 48px;
-    display: block;
-    margin-bottom: 10px;
+.nav-item {
+    margin: 0;
 }
 
-.upload-text {
+.nav-link {
     color: #666;
-    font-size: 16px;
-    margin-bottom: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 15px 0;
+    display: block;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #1890ff;
+}
+
+.nav-link.active {
+    color: #1890ff;
+    border-bottom-color: #1890ff;
+}
+
+/* 主容器 */
+.container {
+    margin: 0 auto;
+    background: #fff;
+    padding: 24px;
+}
+
+/* 两列布局 */
+.main-content {
+    display: flex;
+    gap: 40px;
+}
+
+.left-section,
+.right-section {
+    flex: 1;
+}
+
+/* 区块标题 */
+.section-header {
+    border: 1px solid #d9d9d9;
+    padding: 12px 16px;
+    margin-bottom: 0;
+    background: #fff;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: normal;
+    color: #333;
+    margin: 0;
+}
+
+/* 表格样式 */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #d9d9d9;
+    border-top: none;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #d9d9d9;
+    padding: 12px 8px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.data-table th {
+    background: #fafafa;
+    font-weight: normal;
+    color: #333;
+}
+
+.data-table td {
+    background: #fff;
+}
+
+/* 文件上传区域 */
+.file-upload-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-btn {
+    padding: 4px 12px;
+    border: 1px solid #d9d9d9;
+    background: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.file-btn:hover {
+    border-color: #1890ff;
+    color: #1890ff;
 }
 
 .file-name {
-    color: #52c41a;
-    font-size: 14px;
-    word-break: break-all;
+    color: #999;
+    font-size: 12px;
 }
 
-.config-area {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.input-group label {
-    color: #333;
-    font-size: 14px;
+.file-name.has-file {
+    color: #1890ff;
     font-weight: 500;
 }
 
-.input-group input {
-    padding: 12px 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: border-color 0.3s;
+/* 输入框 */
+.column-input {
+    width: 100%;
+    padding: 4px 8px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    font-size: 13px;
+    outline: none;
 }
 
-.input-group input:focus {
-    outline: none;
-    border-color: #667eea;
+.column-input:focus {
+    border-color: #1890ff;
+}
+
+.column-input::placeholder {
+    color: #bfbfbf;
+}
+
+/* 新增按钮 */
+.add-row-btn {
+    width: 100%;
+    padding: 10px;
+    background: #1890ff;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 16px;
+    transition: all 0.3s;
+}
+
+.add-row-btn:hover {
+    background: #40a9ff;
+}
+
+/* 提交按钮 */
+.submit-section {
+    margin-top: 24px;
+    text-align: center;
 }
 
 .submit-btn {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    padding: 10px 40px;
+    background: #1890ff;
+    color: #fff;
     border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: 600;
+    border-radius: 2px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 20px;
+    font-size: 14px;
+    transition: all 0.3s;
 }
 
 .submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    background: #40a9ff;
 }
 
 .submit-btn:disabled {
-    background: #ccc;
+    background: #bfbfbf;
     cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
 }
 
-.result-area, .error-area {
-    margin-top: 30px;
-    padding: 25px;
-    border-radius: 12px;
+/* 使用说明 */
+.instructions {
+    margin-top: 32px;
+    padding: 20px;
+    background: #f6ffed;
+    border: 1px solid #b7eb8f;
+    border-radius: 2px;
+}
+
+.instructions h3 {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.instructions ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.instructions li {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.8;
+    padding-left: 16px;
+    position: relative;
+}
+
+.instructions li::before {
+    content: '•';
+    color: #52c41a;
+    position: absolute;
+    left: 0;
+}
+
+/* 结果区域 */
+.result-area,
+.error-area {
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 2px;
     text-align: center;
 }
 
@@ -255,102 +271,48 @@ h1 {
     border: 1px solid #ffccc7;
 }
 
-.success-message, .error-message {
+.success-message,
+.error-message {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 8px;
+    margin-bottom: 12px;
 }
 
 .success-icon {
     color: #52c41a;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .error-icon {
     color: #ff4d4f;
-    font-size: 24px;
-}
-
-.success-message p {
-    color: #52c41a;
     font-size: 18px;
-    font-weight: 500;
-}
-
-.error-message p {
-    color: #ff4d4f;
-    font-size: 16px;
 }
 
 .download-btn {
     display: inline-block;
-    padding: 12px 30px;
+    padding: 8px 24px;
     background: #52c41a;
-    color: white;
+    color: #fff;
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: 500;
+    border-radius: 2px;
+    font-size: 14px;
     transition: all 0.3s;
 }
 
 .download-btn:hover {
-    background: #389e0d;
-    transform: translateY(-2px);
+    background: #73d13d;
 }
 
-.instructions {
-    margin-top: 40px;
-    padding: 25px;
-    background: #f5f5f5;
-    border-radius: 12px;
+/* 删除按钮 */
+.delete-btn {
+    color: #ff4d4f;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0 8px;
 }
 
-.instructions h3 {
-    color: #333;
-    margin-bottom: 15px;
-    font-size: 18px;
-}
-
-.instructions ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.instructions li {
-    color: #666;
-    padding: 8px 0;
-    padding-left: 25px;
-    position: relative;
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.instructions li::before {
-    content: "•";
-    color: #667eea;
-    font-weight: bold;
-    position: absolute;
-    left: 8px;
-}
-
-[hidden] {
-    display: none !important;
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 25px;
-    }
-    
-    .upload-section {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .file-section {
-        width: 100%;
-        max-width: 100%;
-    }
+.delete-btn:hover {
+    color: #ff7875;
 }
