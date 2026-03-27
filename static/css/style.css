@@ -174,7 +174,7 @@ body {
 
 /* 新增按钮 */
 .add-row-btn {
-    width: 100%;
+    width: 150px;
     padding: 10px;
     background: #1890ff;
     color: #fff;
